@@ -3,6 +3,7 @@ package com.niit.latitude.test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.niit.latitude.dao.PostCommentDAO;
+import com.niit.latitude.dao.PostDAO;
 import com.niit.latitude.model.PostComment;
 
 public class PostCommentTest {
@@ -18,6 +19,8 @@ public class PostCommentTest {
 		PostCommentDAO postCommentDAO = (PostCommentDAO) context.getBean("postCommentDAO");
 
 		PostComment postComment = (PostComment) context.getBean("postComment");
+		
+		PostDAO postDAO = (PostDAO) context.getBean("postDAO");
 
 //		Date date = new Date();
 //		long time = date.getTime();
@@ -25,6 +28,11 @@ public class PostCommentTest {
 
 		postComment.setId("PC01");
 		postComment.setComment("good");
+		
+		postComment.setPost(postDAO.get("P001"));
+		postComment.setPost_id("P001");
+		
+		
 		
 		//PostComment.setPostCommentedat(date);
 

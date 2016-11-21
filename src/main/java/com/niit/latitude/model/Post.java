@@ -1,22 +1,36 @@
 package com.niit.latitude.model;
 
-import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
+
 
 @Entity
 @Table(name = "post")
 @Component
 public class Post {
 	
-	@Id
 	private String id;
 	private String name;
 	private String description;
+	private Set<PostComment> postComment;
+	
+
+	@OneToMany(mappedBy = "post", fetch = FetchType.EAGER)
+	
+	public Set<PostComment> getPostComment() {
+		return postComment;
+	}
+	public void setPostComment(Set<PostComment> postComment) {
+		this.postComment = postComment;
+	}
+	
 	//private Date postedat;
 	
 	
@@ -26,6 +40,8 @@ public class Post {
 //	public void setPostedat(Date postedat) {
 //		this.postedat = postedat;
 //	}
+	
+	@Id
 	public String getId() {
 		return id;
 	}
